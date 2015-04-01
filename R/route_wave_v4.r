@@ -24,6 +24,10 @@
 #' @name waterolympics
 #' @usage data(waterolympics)
 #' @format A data frame with 40 rows and 3 variables
+#' @references Sobey, Rodney. "H11: Hydrograph Routing." 
+#'   Review of One-Dimensional Hydrodynamic and Transport Models. Bay-Delta 
+#'   Modeling Forum, 15 June 2001. Web. 13 Mar. 2015. 
+#'   <http://www.cwemf.org/1-DReview/>.
 NULL
 
 
@@ -67,7 +71,7 @@ NULL
 #'   while the downstream boundary is assumed to be depth [\eqn{L}]. Other possibilities
 #'   are \code{"yQ"} and \code{"yy"}. 
 #' @return data.frame with columns:
-#'   \item{timestep}{Time step.}
+#'   \item{step}{Time step.}
 #'   \item{node}{Node index.}
 #'   \item{time}{Time since start.}
 #'   \item{distance}{Downstream distance.}
@@ -156,8 +160,8 @@ route_wave = function(So, n, Cm, g, B, SS,
   rownames(mpmat) = as.integer(seq(nrow(mpmat)))
   colnames(mtmat) = as.integer(seq(ncol(mtmat)))
   rownames(mtmat) = as.integer(monitor.times)
-  mpdf = reshape2::melt(mpmat)
-  mtdf = reshape2::melt(mtmat)
+  mpdf = melt(mpmat)
+  mtdf = melt(mtmat)
   # add extra data
   mpnames = c("mpdepth", "mpvelocity", "mparea")
   mtnames= c("mtdepth", "mtvelocity", "mtarea")
@@ -166,24 +170,24 @@ route_wave = function(So, n, Cm, g, B, SS,
     thismat = reslist[[n]]
     colnames(thismat) = as.integer(monitor.nodes)
     rownames(thismat) = as.integer(seq(nrow(thismat)))
-    thisdf = reshape2::melt(thismat)
+    thisdf = melt(thismat)
     mpdf = cbind(mpdf, thisdf[, 3])	
   }
   for(n in mtnames){
     thismat = reslist[[n]]
     colnames(thismat) = as.integer(seq(ncol(thismat)))
     rownames(thismat) = as.integer(monitor.times)
-    thisdf = reshape2::melt(thismat)
+    thisdf = melt(thismat)
     mtdf = cbind(mtdf, thisdf[, 3])	
   }
-  names(mpdf) = c("timestep", "node", "flow", addnames)  
-  names(mtdf) = c("timestep", "node", "flow", addnames)  
+  names(mpdf) = c("step", "node", "flow", addnames)  
+  names(mtdf) = c("step", "node", "flow", addnames)  
   mpdf['monitor.type'] = "node"
   mtdf['monitor.type'] = "timestep"
   allres = rbind(mpdf, mtdf)
   allres["distance"] = (allres$node - 1)*spacestep
-  allres["time"] = (allres$timestep - 1)*timestep
-  retnames = c("timestep", "node", "time", "distance", "flow", 
+  allres["time"] = (allres$step - 1)*timestep
+  retnames = c("step", "node", "time", "distance", "flow", 
     addnames, "monitor.type")
   return(allres[retnames])
 } 
