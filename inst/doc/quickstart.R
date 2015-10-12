@@ -22,6 +22,8 @@ gvf = compute_profile(slope, mannings, flow, y0 = 2.7, Cm, gravity, width,
 ## ----plot-gvf------------------------------------------------------------
 require(ggplot2)
 ggplot(gvf, aes(x = x, y = y + z)) + geom_line(color='blue')
+# or try the default plot method
+# plot(gvf)
 
 ## ----uf------------------------------------------------------------------
 baseflow = 250; mannings = 0.045 ; Cm = 1.486; gravity = 32.2
@@ -45,4 +47,6 @@ uf.nodes = filter(uf, monitor.type == "node")
 ggplot(uf.nodes, aes(x=time, y=flow, color=factor(distance))) + geom_line()
 uf.times = filter(uf, monitor.type == "timestep")
 ggplot(uf.times, aes(x=distance, y=flow, color=factor(time))) + geom_line()
+# or try the default plot method
+# plot(uf)
 
