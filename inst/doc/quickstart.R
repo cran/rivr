@@ -1,6 +1,6 @@
 ## ----include=FALSE-------------------------------------------------------
 require(knitr)
-opts_chunk$set(warning=FALSE, message=FALSE, error=FALSE, dev='svg')
+opts_chunk$set(warning=FALSE, message=FALSE, error=FALSE, dev='svg', fig.show='hold')
 
 ## ----ynyc----------------------------------------------------------------
 require(rivr)
