@@ -1,20 +1,24 @@
-%\VignetteEngine{knitr} 
-%\VignetteIndexEntry{publication-reproduction} 
+---
+author: "Michael Koohafkan"
+title: "Reproducing the R Journal Publication"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Publication Reproduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-```{r include=FALSE}
-require(knitr)
+```{r include = FALSE}
+library(knitr)
 opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
-
-Reproducing the R Journal Publication
-=====================================
 
 This document provides the code needed to reproduce all results and figures 
 from 
 
 > Michael C. Koohafkan and Bassam A. Younis (2015). 
 > Open-Channel Computation with R. The R Journal, 7(2), 249-262. 
-> URL http://journal.r-project.org/archive/2015-2/koohafkan-younis.pdf
+> URL https://journal.r-project.org/archive/2015-2/koohafkan-younis.pdf
 
 The .Rnw file used to generate the full publication is hosted on the
 [package development repository](https://github.com/mkoohafkan/rivr/tree/master/inst/pub).
@@ -493,3 +497,4 @@ for(n in unique(dclose.times$step))
     facet_wrap(~scheme)
   )
 ```
+
