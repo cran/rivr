@@ -1,8 +1,8 @@
-## ----include=FALSE-------------------------------------------------------
+## ----include=FALSE------------------------------------------------------------
 require(knitr)
 opts_chunk$set(warning=FALSE, message=FALSE, error=FALSE, dev='svg', fig.show='hold')
 
-## ----ynyc----------------------------------------------------------------
+## ----ynyc---------------------------------------------------------------------
 require(rivr)
 flow = 250; mannings = 0.045 ; Cm = 1.486; gravity = 32.2
 width = 100; slope = 0.001; sideslope = 0
@@ -12,20 +12,20 @@ yc = critical_depth(flow, yopt = 2, gravity, width, sideslope)
 
 print(c(normal.depth = yn, critical.depth = yc))
 
-## ----gvf-----------------------------------------------------------------
+## ----gvf----------------------------------------------------------------------
 flow = 250; mannings = 0.045 ; Cm = 1.486; gravity = 32.2
 width = 100; slope = 0.001; sideslope = 0
 
 gvf = compute_profile(slope, mannings, flow, y0 = 2.7, Cm, gravity, width, 
   sideslope, stepdist=50, totaldist=3000)
 
-## ----plot-gvf------------------------------------------------------------
+## ----plot-gvf-----------------------------------------------------------------
 require(ggplot2)
 ggplot(gvf, aes(x = x, y = y + z)) + geom_line(color='blue')
 # or try the default plot method
 # plot(gvf)
 
-## ----uf------------------------------------------------------------------
+## ----uf-----------------------------------------------------------------------
 baseflow = 250; mannings = 0.045 ; Cm = 1.486; gravity = 32.2
 width = 100; slope = 0.001; sideslope = 0
 
@@ -41,7 +41,7 @@ uf = route_wave(slope, mannings, Cm, gravity, width, sideslope,
   baseflow, wave, downstream, tresolution, xresolution, numnodes, 
   mn, mt, "Dynamic", "MacCormack", "QQ") 
 
-## ----uf-access-----------------------------------------------------------
+## ----uf-access----------------------------------------------------------------
 require(dplyr)
 uf.nodes = filter(uf, monitor.type == "node")
 ggplot(uf.nodes, aes(x=time, y=flow, color=factor(distance))) + geom_line()

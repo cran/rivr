@@ -1,8 +1,8 @@
 Package: rivr
 Type: Package
 Title: Steady and Unsteady Open-Channel Flow Computation
-Version: 1.2-1
-Date: 2019-03-12
+Version: 1.2-2
+Date: 2020-02-27
 Authors@R: c(
     person("Michael C", "Koohafkan", , "michael.koohafkan@gmail.com", role = c("aut", "cre"))
     )
@@ -19,10 +19,10 @@ Suggests: dplyr, ggplot2, knitr, rmarkdown, shiny
 LinkingTo: Rcpp
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 NeedsCompilation: yes
-Packaged: 2019-03-12 15:09:07 UTC; mkoohafk
+Packaged: 2020-02-27 20:40:24 UTC; mkoohafk
 Author: Michael C Koohafkan [aut, cre]
 Maintainer: Michael C Koohafkan <michael.koohafkan@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-03-12 16:10:03 UTC
+Date/Publication: 2020-02-27 21:00:02 UTC
